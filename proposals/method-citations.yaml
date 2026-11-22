@@ -47,9 +47,6 @@ candidate-publications:
   gf2-periodic-bandgaps-2019:
     locator: doi:10.1103/PhysRevB.100.085112
     label: GF2 propagator renormalization and band gaps in insulating solids
-  gf2-two-particle-properties-2021:
-    locator: doi:10.1063/5.0054661
-    label: two-particle properties from finite-temperature GF2 and GW
   gw-original-1965:
     locator: doi:10.1103/PhysRev.139.A796
     label: original GW method
@@ -114,30 +111,21 @@ components:
         questions: []
 
       gf2:
-        status: review-required
+        status: resolved
         proposed:
           - publication: gf2-foundation-2014
             role: original-method
-            when: any GF2 calculation
+            when: molecular GF2 calculations
           - publication: gf2-periodic-2016
             role: specialized-method
             when: periodic GF2 calculations
           - publication: gf2-periodic-bandgaps-2019
             role: application-and-validation
-            when: periodic GF2 band gaps or propagator-renormalization results are central
-          - publication: gf2-two-particle-properties-2021
-            role: observable-method
-            when: GF2 two-particle properties derived by this route are reported
+            when: periodic GF2 calculations
         rationale: >-
-          Phillips and Zgid establish the molecular formulation; Rusakov and
-          Zgid establish periodic GF2. The two Iskakov-involving papers address
-          periodic band-gap physics and two-particle observables rather than
-          replacing those core method papers. GREEN's general software citation
-          is governed separately.
-        questions:
-          - Should periodic calculations cite both the 2014 and 2016 method papers, or only 2016?
-          - Should either Iskakov-involving paper be required more broadly than the matching result or observable?
-          - Is the 2024 tensor-hypercontraction/GWSOX paper relevant only when those features are used?
+          Molecular GF2 cites Phillips and Zgid. Periodic GF2 cites both the
+          Rusakov-Zgid method paper and the Iskakov et al. solids paper.
+        questions: []
 
       gw:
         status: resolved
@@ -196,20 +184,21 @@ components:
         proposed:
           - publication: diis-original-1980
             role: original-method
-            when: DIIS is selected
+            when: difference-residual DIIS is selected
           - publication: diis-improved-1982
-            role: method-development
-            when: the implemented variant relies on the improved formulation
+            role: original-commutator-method
+            when: commutator DIIS (CDIIS) is selected
           - publication: dyson-subspace-2022
             role: specialized-method
-            when: finite-temperature Dyson DIIS or CDIIS is selected
+            when: either DIIS or CDIIS is used in a GREEN finite-temperature Dyson solve
         rationale: >-
-          GREEN exposes DIIS and commutator DIIS. The theory page cites both
-          Pulay papers and the finite-temperature Dyson study, but does not say
-          which citation belongs to each command-line choice.
+          Pokhilko, Yeh, and Zgid cite Pulay 1980 for DIIS and Pulay 1982 for
+          the commutator-residual SCF variant called CDIIS. Their 2022 paper
+          generalizes both residual choices to finite-temperature Dyson solves,
+          so it accompanies either GREEN route.
         questions:
-          - Which Pulay paper corresponds to GREEN's DIIS implementation?
-          - Should CDIIS cite only the 2022 Dyson paper, or Pulay plus that paper?
+          - Approve DIIS as Pulay 1980 plus Pokhilko-Yeh-Zgid 2022?
+          - Approve CDIIS as Pulay 1982 plus Pokhilko-Yeh-Zgid 2022?
 
       chebyshev-grid:
         status: resolved
