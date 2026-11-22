@@ -28,6 +28,7 @@ def cited_keys(policy: dict) -> set[str]:
     keys: set[str] = set()
     for component in policy["components"].values():
         keys.update(component["implementation"])
+        keys.update(component["historical"])
         for mapping in (component["versions"], component["methods"]):
             for values in mapping.values():
                 keys.update(values)
@@ -64,6 +65,10 @@ def markdown(policy: dict, papers: dict[str, dict]) -> str:
     for slug, component in policy["components"].items():
         lines += [f'## {component["name"]} (`{slug}`)', "", "### Implementation", ""]
         for key in component["implementation"]:
+            paper = papers[key]
+            lines.append(f"- {reference_text(paper)}")
+        lines += ["", "### Historical and optional", ""]
+        for key in component["historical"]:
             paper = papers[key]
             lines.append(f"- {reference_text(paper)}")
         lines += ["", "### Versions", ""]

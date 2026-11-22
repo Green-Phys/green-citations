@@ -26,6 +26,10 @@ source-evidence:
       - src/green/mbpt/gw_solver.h
       - src/green/embedding/embedding_defs.h
       - src/green/embedding/embedding_run.h
+  - repository: Green-Phys/MiniPole
+    revision: 5dc464911b8742a2b8fbb13f1d2d60b436dfe669
+    paths:
+      - README.md
 
 candidate-publications:
   green-weakcoupling-2025:
@@ -40,6 +44,12 @@ candidate-publications:
   gf2-periodic-2016:
     locator: doi:10.1063/1.4940900
     label: periodic self-consistent GF2
+  gf2-periodic-bandgaps-2019:
+    locator: doi:10.1103/PhysRevB.100.085112
+    label: GF2 propagator renormalization and band gaps in insulating solids
+  gf2-two-particle-properties-2021:
+    locator: doi:10.1063/5.0054661
+    label: two-particle properties from finite-temperature GF2 and GW
   gw-original-1965:
     locator: doi:10.1103/PhysRev.139.A796
     label: original GW method
@@ -88,23 +98,20 @@ candidate-publications:
   minimal-pole-matrix-2024:
     locator: doi:10.1103/PhysRevB.110.235131
     label: matrix-valued minimal-pole continuation
+  minipole-software-v0.4:
+    locator: doi:10.5281/zenodo.15121302
+    label: MiniPole v0.4 software archive
 
 components:
   green-mbpt:
     methods:
       hartree-fock:
-        status: review-required
-        proposed:
-          - publication: green-weakcoupling-2025
-            role: green-implementation
-            when: any GREEN Hartree-Fock calculation
+        status: resolved
+        proposed: []
         rationale: >-
-          GREEN implements Hartree-Fock as both a standalone calculation and
-          the static contribution used by GF2 and GW, but the current theory
-          page does not identify a primary Hartree-Fock citation policy.
-        questions:
-          - Is a method citation beyond the GREEN implementation paper required?
-          - Does embedded Hartree-Fock inside GF2 or GW trigger a separate citation?
+          No method-specific paper is required for standalone or embedded
+          Hartree-Fock. The general GREEN software citation still applies.
+        questions: []
 
       gf2:
         status: review-required
@@ -115,20 +122,25 @@ components:
           - publication: gf2-periodic-2016
             role: specialized-method
             when: periodic GF2 calculations
-          - publication: green-weakcoupling-2025
-            role: green-implementation
-            when: any GF2 calculation performed with GREEN
+          - publication: gf2-periodic-bandgaps-2019
+            role: application-and-validation
+            when: periodic GF2 band gaps or propagator-renormalization results are central
+          - publication: gf2-two-particle-properties-2021
+            role: observable-method
+            when: GF2 two-particle properties derived by this route are reported
         rationale: >-
-          The website distinguishes the molecular GF2 formulation, the
-          periodic formulation, and GREEN's spin-resolved density-fitted
-          implementation.
+          Phillips and Zgid establish the molecular formulation; Rusakov and
+          Zgid establish periodic GF2. The two Iskakov-involving papers address
+          periodic band-gap physics and two-particle observables rather than
+          replacing those core method papers. GREEN's general software citation
+          is governed separately.
         questions:
-          - Should molecular calculations cite only the 2014 method paper?
-          - Should periodic calculations cite both the 2014 and 2016 papers, or only 2016?
+          - Should periodic calculations cite both the 2014 and 2016 method papers, or only 2016?
+          - Should either Iskakov-involving paper be required more broadly than the matching result or observable?
           - Is the 2024 tensor-hypercontraction/GWSOX paper relevant only when those features are used?
 
       gw:
-        status: review-required
+        status: resolved
         proposed:
           - publication: gw-original-1965
             role: original-method
@@ -136,19 +148,15 @@ components:
           - publication: gw-green-periodic-2022
             role: specialized-method
             when: nonrelativistic periodic finite-temperature GW
-          - publication: green-weakcoupling-2025
-            role: green-implementation
-            when: any GW calculation performed with GREEN
         rationale: >-
           The GREEN theory page explicitly identifies Hedin as the original GW
           method and the 2022 paper as the implemented finite-temperature,
-          Gaussian-Bloch-orbital formulation.
-        questions:
-          - Is the 2022 paper required for molecules as well as solids?
-          - Should the GREEN implementation paper replace or supplement the 2022 paper?
+          Gaussian-Bloch-orbital formulation. Both apply to molecular and solid
+          GREEN calculations; the general GREEN software citation is additional.
+        questions: []
 
       relativistic-gw-x2c:
-        status: review-required
+        status: resolved
         proposed:
           - publication: gw-original-1965
             role: original-method
@@ -156,15 +164,11 @@ components:
           - publication: gw-relativistic-x2c-2022
             role: specialized-method
             when: X2C or spin-orbit GW is enabled
-          - publication: green-weakcoupling-1.0-2027
-            role: version-implementation
-            when: the GREEN 1.x relativistic implementation is used
         rationale: >-
-          The website identifies the X2C paper separately and the 1.0 paper
-          describes the symmetry-adapted release.
-        questions:
-          - Does every spin-orbit calculation use the X2C formulation covered by the 2022 paper?
-          - Is the 2025 implementation paper also required for this route?
+          Every GREEN relativistic calculation uses X2C. The relativistic X2C
+          paper is also the implementation paper for this route; the general
+          GREEN software citation applies separately.
+        questions: []
 
       seet:
         status: review-required
@@ -175,7 +179,7 @@ components:
           - publication: seet-gw-2017
             role: specialized-method
             when: GW is the weak-coupling method
-          - publication: green-weakcoupling-2025
+          - publication: green-weakcoupling-1.0-2027
             role: green-implementation
             when: GREEN supplies the weak-coupling or embedding workflow
         rationale: >-
@@ -208,17 +212,18 @@ components:
           - Should CDIIS cite only the 2022 Dyson paper, or Pulay plus that paper?
 
       chebyshev-grid:
-        status: review-required
+        status: resolved
         proposed:
           - publication: chebyshev-imaginary-time-2018
             role: numerical-method
             when: the Chebyshev representation is selected
-        rationale: The website describes this paper as the basis for the Chebyshev route.
-        questions:
-          - Is this route supported in every maintained GREEN 1.x release?
+        rationale: >-
+          Chebyshev is supported throughout all GREEN releases and this paper is
+          a secondary citation whenever the representation is selected.
+        questions: []
 
       intermediate-representation-grid:
-        status: review-required
+        status: resolved
         proposed:
           - publication: ir-original-2017
             role: original-method
@@ -227,11 +232,10 @@ components:
             role: numerical-method
             when: GREEN's sparse time/frequency sampling is used
         rationale: >-
-          The website distinguishes the IR basis from the sparse-sampling layer
-          that makes transforms practical.
-        questions:
-          - Does every GREEN IR calculation use the 2020 sparse-sampling algorithm?
-          - Is a sparse-ir or irbasis software paper also required by the dependency's policy?
+          IR is supported throughout all GREEN releases. The IR and sparse-
+          sampling papers are secondary citations whenever this representation
+          is selected.
+        questions: []
 
   green-ac:
     methods:
@@ -246,48 +250,58 @@ components:
           - Is there a separate GREEN green-ac implementation paper or software citation?
 
       caratheodory:
-        status: review-required
+        status: resolved
         proposed:
           - publication: caratheodory-2021
             role: original-method
             when: matrix-valued Caratheodory continuation is used
-        rationale: The installation page says green-ac supports this method.
-        questions:
-          - Is Caratheodory currently user-reachable? The post-processing page says only Nevanlinna is implemented.
+        rationale: >-
+          Caratheodory is user-accessible in green-ac, but is not a recommended
+          continuation route. Its method paper remains required when it is used.
+        questions: []
 
       maximum-entropy:
-        status: review-required
+        status: resolved
         proposed:
           - publication: maxent-green-implementation-2017
             role: implementation
-            when: the cited MaxEnt implementation is actually used
+            when: MaxEnt is used for a diagonal Green's function or density of states
         rationale: >-
-          The theory page discusses MaxEnt, but the green-ac installation page
-          does not claim that green-ac implements it.
-        questions:
-          - Is MaxEnt part of the supported GREEN stack, or background only?
+          MaxEnt is a supported GREEN capability only for diagonal Green's
+          functions and densities of states.
+        questions: []
 
   minipole:
     methods:
       scalar-minimal-pole:
-        status: review-required
+        status: resolved
         proposed:
           - publication: minimal-pole-2024
             role: original-method
             when: scalar MiniPole continuation is used
-        rationale: The website routes MiniPole installation to a separate repository.
-        questions:
-          - Does MiniPole have a software citation in addition to the method paper?
+          - publication: minipole-software-v0.4
+            role: software
+            when: MiniPole software v0.4 is used
+        rationale: >-
+          MiniPole has both a method paper and a versioned Zenodo software
+          archive. The repository badge currently links to the v0.4 archive;
+          later archived versions should use their own version DOI.
+        questions: []
 
       matrix-minimal-pole:
-        status: review-required
+        status: resolved
         proposed:
           - publication: minimal-pole-matrix-2024
             role: original-method
             when: matrix-valued MiniPole continuation is used
-        rationale: The theory page distinguishes the matrix-valued extension.
-        questions:
-          - Is the matrix implementation released and supported in MiniPole?
+          - publication: minipole-software-v0.4
+            role: software
+            when: MiniPole software v0.4 is used
+        rationale: >-
+          The matrix implementation is released and fully supported. MiniPole's
+          repository badge currently links to the v0.4 archive; later archived
+          versions should use their own version DOI.
+        questions: []
 
 not-proposed-as-required:
   - category: general-background
