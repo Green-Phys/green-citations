@@ -17,6 +17,11 @@ The initial catalog contains the two established GREEN software publications.
 The component policy is deliberately marked `draft`: method-specific mappings
 must be reviewed by the scientific collaborators before they become normative.
 
+The non-normative first-pass inventory is in
+`proposals/method-citations.yaml`. It records candidate mappings and open
+questions but is deliberately excluded from generated citation guidance until
+collaborators approve individual decisions.
+
 Downstream repositories and AI agents should link to this repository rather
 than maintain their own publication metadata. They may present the generated
 guidance, but must not infer that a software citation replaces citations for

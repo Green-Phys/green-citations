@@ -10,13 +10,14 @@ Software citations do not replace citations for scientific methods used in a cal
 
 ### Implementation
 
+- Gaurav Harsha, Agnieszka Jażdżewska, Antoine Marie, Munkhorgil Wang, Sergei Iskakov, Dominika Zgid, Emanuel Gull. “Green/WeakCoupling 1.0.0: Symmetry-adapted self-consistent many-body perturbation theory for molecules and solids.” *Computer Physics Communications* 331 (2027), 110486. https://doi.org/10.1016/j.cpc.2026.110486
+
+### Historical and optional
+
 - Sergei Iskakov, Chia-Nan Yeh, Pavel Pokhilko, Yang Yu, Lei Zhang, Gaurav Harsha, Vibin Abraham, Ming Wen, Munkhorgil Wang, Jacob Adamski, Tianran Chen, Emanuel Gull, Dominika Zgid. “Green/WeakCoupling: Implementation of fully self-consistent finite-temperature many-body perturbation theory for molecules and solids.” *Computer Physics Communications* 306 (2025), 109380. https://doi.org/10.1016/j.cpc.2024.109380
 
 ### Versions
 
-#### Version 1
-
-- Gaurav Harsha, Agnieszka Jażdżewska, Antoine Marie, Munkhorgil Wang, Sergei Iskakov, Dominika Zgid, Emanuel Gull. “Green/WeakCoupling 1.0.0: Symmetry-adapted self-consistent many-body perturbation theory for molecules and solids.” *Computer Physics Communications* 331 (2027), 110486. https://doi.org/10.1016/j.cpc.2026.110486
 
 ### Scientific methods
 

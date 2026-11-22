@@ -8,10 +8,10 @@ components:
   green-mbpt:
     name: GREEN/WeakCoupling
     implementation:
+      - green-weakcoupling-1.0-2027
+    historical:
       - green-weakcoupling-2025
-    versions:
-      '1':
-        - green-weakcoupling-1.0-2027
+    versions: {}
     methods: {}
     method-mapping-status: review-required
     method-mapping-note: >-

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["proposal-version", "status", "normative", "purpose", "source-evidence", "candidate-publications", "components", "not-proposed-as-required"],
+  "properties": {
+    "proposal-version": {"const": 1},
+    "status": {"const": "review-required"},
+    "normative": {"const": false},
+    "purpose": {"type": "string", "minLength": 1},
+    "source-evidence": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["repository", "revision", "paths"],
+        "properties": {
+          "repository": {"type": "string", "minLength": 1},
+          "revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+          "paths": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true}
+        }
+      }
+    },
+    "candidate-publications": {
+      "type": "object", "minProperties": 1,
+      "additionalProperties": {
+        "type": "object", "additionalProperties": false,
+        "required": ["locator", "label"],
+        "properties": {
+          "locator": {"type": "string", "pattern": "^(doi|arxiv):.+$"},
+          "label": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "components": {
+      "type": "object", "minProperties": 1,
+      "additionalProperties": {
+        "type": "object", "additionalProperties": false, "required": ["methods"],
+        "properties": {
+          "methods": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/method"}}
+        }
+      }
+    },
+    "not-proposed-as-required": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["category", "examples", "reason"],
+        "properties": {
+          "category": {"type": "string"},
+          "examples": {"type": "array", "items": {"type": "string"}},
+          "reason": {"type": "string"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "method": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "proposed", "rationale", "questions"],
+      "properties": {
+        "status": {"enum": ["resolved", "review-required"]},
+        "proposed": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["publication", "role", "when"],
+            "properties": {
+              "publication": {"type": "string"},
+              "role": {"type": "string", "minLength": 1},
+              "when": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "rationale": {"type": "string", "minLength": 1},
+        "questions": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

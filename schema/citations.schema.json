@@ -18,10 +18,11 @@
     "component": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "implementation", "versions", "methods", "method-mapping-status"],
+      "required": ["name", "implementation", "historical", "versions", "methods", "method-mapping-status"],
       "properties": {
         "name": {"type": "string", "minLength": 1},
         "implementation": {"$ref": "#/$defs/keys"},
+        "historical": {"$ref": "#/$defs/keys"},
         "versions": {
           "type": "object",
           "additionalProperties": {"$ref": "#/$defs/keys"}
