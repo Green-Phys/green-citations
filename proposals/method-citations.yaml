@@ -180,7 +180,7 @@ components:
           - Should FSC_SEET carry a distinct citation from inner-loop SEET?
 
       diis:
-        status: review-required
+        status: resolved
         proposed:
           - publication: diis-original-1980
             role: original-method
@@ -196,9 +196,7 @@ components:
           the commutator-residual SCF variant called CDIIS. Their 2022 paper
           generalizes both residual choices to finite-temperature Dyson solves,
           so it accompanies either GREEN route.
-        questions:
-          - Approve DIIS as Pulay 1980 plus Pokhilko-Yeh-Zgid 2022?
-          - Approve CDIIS as Pulay 1982 plus Pokhilko-Yeh-Zgid 2022?
+        questions: []
 
       chebyshev-grid:
         status: resolved
