@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: >-
+  Consult CITATION.md for the publications appropriate to the GREEN software,
+  version, and scientific methods used in your work.
+title: GREEN citation policy
+type: dataset
+authors:
+  - family-names: GREEN contributors
+repository-code: https://github.com/Green-Phys/green-citations
+url: https://green-phys.org/
+license: MIT
+references:
+  - type: article
+    title: >-
+      Green/WeakCoupling: Implementation of fully self-consistent
+      finite-temperature many-body perturbation theory for molecules and solids
+    authors:
+      - {given-names: Sergei, family-names: Iskakov}
+      - {given-names: Chia-Nan, family-names: Yeh}
+      - {given-names: Pavel, family-names: Pokhilko}
+      - {given-names: Yang, family-names: Yu}
+      - {given-names: Lei, family-names: Zhang}
+      - {given-names: Gaurav, family-names: Harsha}
+      - {given-names: Vibin, family-names: Abraham}
+      - {given-names: Ming, family-names: Wen}
+      - {given-names: Munkhorgil, family-names: Wang}
+      - {given-names: Jacob, family-names: Adamski}
+      - {given-names: Tianran, family-names: Chen}
+      - {given-names: Emanuel, family-names: Gull}
+      - {given-names: Dominika, family-names: Zgid}
+    journal: Computer Physics Communications
+    volume: 306
+    year: 2025
+    doi: 10.1016/j.cpc.2024.109380
+    start: '109380'
+    identifiers:
+      - {type: other, value: green-weakcoupling-2025}
+  - type: article
+    title: >-
+      Green/WeakCoupling 1.0.0: Symmetry-adapted self-consistent many-body
+      perturbation theory for molecules and solids
+    authors:
+      - {given-names: Gaurav, family-names: Harsha}
+      - {given-names: Agnieszka, family-names: Jażdżewska}
+      - {given-names: Antoine, family-names: Marie}
+      - {given-names: Munkhorgil, family-names: Wang}
+      - {given-names: Sergei, family-names: Iskakov}
+      - {given-names: Dominika, family-names: Zgid}
+      - {given-names: Emanuel, family-names: Gull}
+    journal: Computer Physics Communications
+    volume: 331
+    year: 2027
+    doi: 10.1016/j.cpc.2026.110486
+    start: '110486'
+    identifiers:
+      - {type: other, value: green-weakcoupling-1.0-2027}
+

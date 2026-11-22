@@ -1,0 +1,20 @@
+schema-version: 1
+policy-status: draft
+policy-note: >-
+  Software citations do not replace citations for scientific methods used in a
+  calculation. Method mappings remain review-required until collaborators
+  approve them.
+components:
+  green-mbpt:
+    name: GREEN/WeakCoupling
+    implementation:
+      - green-weakcoupling-2025
+    versions:
+      '1':
+        - green-weakcoupling-1.0-2027
+    methods: {}
+    method-mapping-status: review-required
+    method-mapping-note: >-
+      Add mappings for GF2, GW, Hartree-Fock, SEET, and supporting numerical
+      methods only after collaborator review.
+
