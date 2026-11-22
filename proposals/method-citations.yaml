@@ -1,0 +1,301 @@
+proposal-version: 1
+status: review-required
+normative: false
+purpose: >-
+  Candidate method-to-publication mappings for collaborator review. This file
+  is not citation policy and must not be consumed as approved guidance.
+source-evidence:
+  - repository: Green-Phys/green-phys.github.io
+    revision: e6adc8a02be9e20e86b0d5b97dbbe91abf45a29d
+    paths:
+      - content/docs/theory/GF2_theory.md
+      - content/docs/theory/GW_theory.md
+      - content/docs/theory/Hartree_Fock.md
+      - content/docs/theory/embedding_theory.md
+      - content/docs/theory/Convergence_Acceleration.md
+      - content/docs/theory/Matsubara_Basis.md
+      - content/docs/theory/Analytical_Continuation.md
+      - content/docs/theory/thermodynamics.md
+      - content/docs/installation/general_ac.md
+      - content/docs/getting-started/postprocessing.md
+  - repository: Green-Phys/green-mbpt
+    revision: 2346c87763e20cea5c55b95ab769ee55421f7386
+    paths:
+      - src/green/mbpt/mbpt_run.h
+      - src/green/mbpt/gf2_solver.h
+      - src/green/mbpt/gw_solver.h
+      - src/green/embedding/embedding_defs.h
+      - src/green/embedding/embedding_run.h
+
+candidate-publications:
+  green-weakcoupling-2025:
+    locator: doi:10.1016/j.cpc.2024.109380
+    label: GREEN/WeakCoupling implementation paper
+  green-weakcoupling-1.0-2027:
+    locator: doi:10.1016/j.cpc.2026.110486
+    label: GREEN/WeakCoupling 1.0 version paper
+  gf2-foundation-2014:
+    locator: doi:10.1063/1.4884951
+    label: molecular self-consistent GF2
+  gf2-periodic-2016:
+    locator: doi:10.1063/1.4940900
+    label: periodic self-consistent GF2
+  gw-original-1965:
+    locator: doi:10.1103/PhysRev.139.A796
+    label: original GW method
+  gw-green-periodic-2022:
+    locator: doi:10.1103/PhysRevB.106.235104
+    label: finite-temperature self-consistent GW used by GREEN
+  gw-relativistic-x2c-2022:
+    locator: doi:10.1103/PhysRevB.106.085121
+    label: relativistic X2C self-consistent GW
+  seet-framework-2017:
+    locator: doi:10.1088/1367-2630/aa5d34
+    label: finite-temperature SEET framework
+  seet-gw-2017:
+    locator: doi:10.1103/PhysRevB.96.155106
+    label: SEET combined with GW
+  diis-original-1980:
+    locator: doi:10.1016/0009-2614(80)80396-4
+    label: original Pulay DIIS
+  diis-improved-1982:
+    locator: doi:10.1002/jcc.540030413
+    label: improved Pulay SCF convergence acceleration
+  dyson-subspace-2022:
+    locator: doi:10.1063/5.0082586
+    label: finite-temperature Dyson subspace algorithms
+  chebyshev-imaginary-time-2018:
+    locator: doi:10.1103/PhysRevB.98.075127
+    label: Chebyshev imaginary-time representation
+  ir-original-2017:
+    locator: doi:10.1103/PhysRevB.96.035147
+    label: intermediate representation
+  sparse-sampling-2020:
+    locator: doi:10.1103/PhysRevB.101.035144
+    label: sparse sampling for finite-temperature calculations
+  nevanlinna-2021:
+    locator: doi:10.1103/PhysRevLett.126.056402
+    label: Nevanlinna analytic continuation
+  caratheodory-2021:
+    locator: doi:10.1103/PhysRevB.104.165111
+    label: matrix-valued Caratheodory continuation
+  maxent-green-implementation-2017:
+    locator: doi:10.1016/j.cpc.2017.01.018
+    label: maximum-entropy implementation
+  minimal-pole-2024:
+    locator: doi:10.1103/PhysRevB.110.035154
+    label: scalar minimal-pole continuation
+  minimal-pole-matrix-2024:
+    locator: doi:10.1103/PhysRevB.110.235131
+    label: matrix-valued minimal-pole continuation
+
+components:
+  green-mbpt:
+    methods:
+      hartree-fock:
+        status: review-required
+        proposed:
+          - publication: green-weakcoupling-2025
+            role: green-implementation
+            when: any GREEN Hartree-Fock calculation
+        rationale: >-
+          GREEN implements Hartree-Fock as both a standalone calculation and
+          the static contribution used by GF2 and GW, but the current theory
+          page does not identify a primary Hartree-Fock citation policy.
+        questions:
+          - Is a method citation beyond the GREEN implementation paper required?
+          - Does embedded Hartree-Fock inside GF2 or GW trigger a separate citation?
+
+      gf2:
+        status: review-required
+        proposed:
+          - publication: gf2-foundation-2014
+            role: original-method
+            when: any GF2 calculation
+          - publication: gf2-periodic-2016
+            role: specialized-method
+            when: periodic GF2 calculations
+          - publication: green-weakcoupling-2025
+            role: green-implementation
+            when: any GF2 calculation performed with GREEN
+        rationale: >-
+          The website distinguishes the molecular GF2 formulation, the
+          periodic formulation, and GREEN's spin-resolved density-fitted
+          implementation.
+        questions:
+          - Should molecular calculations cite only the 2014 method paper?
+          - Should periodic calculations cite both the 2014 and 2016 papers, or only 2016?
+          - Is the 2024 tensor-hypercontraction/GWSOX paper relevant only when those features are used?
+
+      gw:
+        status: review-required
+        proposed:
+          - publication: gw-original-1965
+            role: original-method
+            when: any GW calculation
+          - publication: gw-green-periodic-2022
+            role: specialized-method
+            when: nonrelativistic periodic finite-temperature GW
+          - publication: green-weakcoupling-2025
+            role: green-implementation
+            when: any GW calculation performed with GREEN
+        rationale: >-
+          The GREEN theory page explicitly identifies Hedin as the original GW
+          method and the 2022 paper as the implemented finite-temperature,
+          Gaussian-Bloch-orbital formulation.
+        questions:
+          - Is the 2022 paper required for molecules as well as solids?
+          - Should the GREEN implementation paper replace or supplement the 2022 paper?
+
+      relativistic-gw-x2c:
+        status: review-required
+        proposed:
+          - publication: gw-original-1965
+            role: original-method
+            when: any relativistic GW calculation
+          - publication: gw-relativistic-x2c-2022
+            role: specialized-method
+            when: X2C or spin-orbit GW is enabled
+          - publication: green-weakcoupling-1.0-2027
+            role: version-implementation
+            when: the GREEN 1.x relativistic implementation is used
+        rationale: >-
+          The website identifies the X2C paper separately and the 1.0 paper
+          describes the symmetry-adapted release.
+        questions:
+          - Does every spin-orbit calculation use the X2C formulation covered by the 2022 paper?
+          - Is the 2025 implementation paper also required for this route?
+
+      seet:
+        status: review-required
+        proposed:
+          - publication: seet-framework-2017
+            role: original-framework
+            when: any SEET or fully self-consistent SEET calculation
+          - publication: seet-gw-2017
+            role: specialized-method
+            when: GW is the weak-coupling method
+          - publication: green-weakcoupling-2025
+            role: green-implementation
+            when: GREEN supplies the weak-coupling or embedding workflow
+        rationale: >-
+          The code exposes SEET and FSC_SEET with GF2 or GW weak solvers. The
+          website cites the general finite-temperature framework and a SEET+GW
+          application, but no explicit SEET+GF2 mapping.
+        questions:
+          - Which publication should be required for SEET+GF2?
+          - Does the exact-diagonalization impurity solver have its own required citation?
+          - Should FSC_SEET carry a distinct citation from inner-loop SEET?
+
+      diis:
+        status: review-required
+        proposed:
+          - publication: diis-original-1980
+            role: original-method
+            when: DIIS is selected
+          - publication: diis-improved-1982
+            role: method-development
+            when: the implemented variant relies on the improved formulation
+          - publication: dyson-subspace-2022
+            role: specialized-method
+            when: finite-temperature Dyson DIIS or CDIIS is selected
+        rationale: >-
+          GREEN exposes DIIS and commutator DIIS. The theory page cites both
+          Pulay papers and the finite-temperature Dyson study, but does not say
+          which citation belongs to each command-line choice.
+        questions:
+          - Which Pulay paper corresponds to GREEN's DIIS implementation?
+          - Should CDIIS cite only the 2022 Dyson paper, or Pulay plus that paper?
+
+      chebyshev-grid:
+        status: review-required
+        proposed:
+          - publication: chebyshev-imaginary-time-2018
+            role: numerical-method
+            when: the Chebyshev representation is selected
+        rationale: The website describes this paper as the basis for the Chebyshev route.
+        questions:
+          - Is this route supported in every maintained GREEN 1.x release?
+
+      intermediate-representation-grid:
+        status: review-required
+        proposed:
+          - publication: ir-original-2017
+            role: original-method
+            when: the intermediate representation is selected
+          - publication: sparse-sampling-2020
+            role: numerical-method
+            when: GREEN's sparse time/frequency sampling is used
+        rationale: >-
+          The website distinguishes the IR basis from the sparse-sampling layer
+          that makes transforms practical.
+        questions:
+          - Does every GREEN IR calculation use the 2020 sparse-sampling algorithm?
+          - Is a sparse-ir or irbasis software paper also required by the dependency's policy?
+
+  green-ac:
+    methods:
+      nevanlinna:
+        status: review-required
+        proposed:
+          - publication: nevanlinna-2021
+            role: original-method
+            when: scalar Nevanlinna continuation is used
+        rationale: The installation and theory pages identify this method in green-ac.
+        questions:
+          - Is there a separate GREEN green-ac implementation paper or software citation?
+
+      caratheodory:
+        status: review-required
+        proposed:
+          - publication: caratheodory-2021
+            role: original-method
+            when: matrix-valued Caratheodory continuation is used
+        rationale: The installation page says green-ac supports this method.
+        questions:
+          - Is Caratheodory currently user-reachable? The post-processing page says only Nevanlinna is implemented.
+
+      maximum-entropy:
+        status: review-required
+        proposed:
+          - publication: maxent-green-implementation-2017
+            role: implementation
+            when: the cited MaxEnt implementation is actually used
+        rationale: >-
+          The theory page discusses MaxEnt, but the green-ac installation page
+          does not claim that green-ac implements it.
+        questions:
+          - Is MaxEnt part of the supported GREEN stack, or background only?
+
+  minipole:
+    methods:
+      scalar-minimal-pole:
+        status: review-required
+        proposed:
+          - publication: minimal-pole-2024
+            role: original-method
+            when: scalar MiniPole continuation is used
+        rationale: The website routes MiniPole installation to a separate repository.
+        questions:
+          - Does MiniPole have a software citation in addition to the method paper?
+
+      matrix-minimal-pole:
+        status: review-required
+        proposed:
+          - publication: minimal-pole-matrix-2024
+            role: original-method
+            when: matrix-valued MiniPole continuation is used
+        rationale: The theory page distinguishes the matrix-valued extension.
+        questions:
+          - Is the matrix implementation released and supported in MiniPole?
+
+not-proposed-as-required:
+  - category: general-background
+    examples: [Baym-Kadanoff, Luttinger-Ward, Galitskii-Migdal, textbooks]
+    reason: The website uses these to explain theory, not as an explicit usage requirement.
+  - category: diagnostics-and-limitations
+    examples: [multiple-self-consistent-solutions, natural-orbital-analysis]
+    reason: These are relevant scientific context but not tied to a distinct user-selected method.
+  - category: documented-but-not-established-as-supported
+    examples: [Legendre, DLR, sparse-ir, irbasis]
+    reason: The theory page discusses these representations without establishing that green-mbpt exposes each one.
