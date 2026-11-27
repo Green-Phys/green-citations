@@ -1,9 +1,10 @@
-schema-version: 1
+schema-version: 2
 policy-status: draft
 policy-note: >-
   Software citations do not replace citations for scientific methods used in a
   calculation. Method mappings remain review-required until collaborators
-  approve them.
+  approve them. The 2025 implementation paper is optional when documenting
+  work done with a pre-1.0 release.
 components:
   green-mbpt:
     name: GREEN/WeakCoupling

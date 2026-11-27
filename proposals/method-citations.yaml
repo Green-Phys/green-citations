@@ -30,6 +30,15 @@ source-evidence:
     revision: 5dc464911b8742a2b8fbb13f1d2d60b436dfe669
     paths:
       - README.md
+  - repository: Green-Phys/green-seet-solvers
+    revision: faae5fd2ccf4b380f0f218e2140539103acebb55
+    paths: [CMakeLists.txt]
+  - repository: Green-Phys/green-ac
+    revision: 90a4ddcc0ecbf93c8ac59c16192d23ea2bde8115
+    paths: [README.md]
+  - repository: Green-Phys/green-mbtools
+    revision: 64d5eeb2159f32902feadc97535dbc1007ac3bcd
+    paths: [green_mbtools/pesto/analyt_cont.py, setup.py]
 
 candidate-publications:
   green-weakcoupling-2025:
@@ -62,6 +71,15 @@ candidate-publications:
   seet-gw-2017:
     locator: doi:10.1103/PhysRevB.96.155106
     label: SEET combined with GW
+  seet-gf2-molecular-2015:
+    locator: doi:10.1063/1.4938562
+    label: molecular SEET with a GF2 environment
+  seet-gf2-periodic-2019:
+    locator: doi:10.1021/acs.jctc.8b00927
+    label: periodic SEET with a GF2 environment
+  edlib-2018:
+    locator: doi:10.1016/j.cpc.2017.12.016
+    label: EDLib exact-diagonalization impurity solver
   diis-original-1980:
     locator: doi:10.1016/0009-2614(80)80396-4
     label: original Pulay DIIS
@@ -86,7 +104,7 @@ candidate-publications:
   caratheodory-2021:
     locator: doi:10.1103/PhysRevB.104.165111
     label: matrix-valued Caratheodory continuation
-  maxent-green-implementation-2017:
+  maxent-implementation-2017:
     locator: doi:10.1016/j.cpc.2017.01.018
     label: maximum-entropy implementation
   minimal-pole-2024:
@@ -138,9 +156,8 @@ components:
             when: nonrelativistic periodic finite-temperature GW
         rationale: >-
           The GREEN theory page explicitly identifies Hedin as the original GW
-          method and the 2022 paper as the implemented finite-temperature,
-          Gaussian-Bloch-orbital formulation. Both apply to molecular and solid
-          GREEN calculations; the general GREEN software citation is additional.
+          method. The 2022 paper describes the Gaussian-Bloch-orbital
+          formulation used in periodic calculations.
         questions: []
 
       relativistic-gw-x2c:
@@ -162,22 +179,30 @@ components:
         status: review-required
         proposed:
           - publication: seet-framework-2017
-            role: original-framework
+            role: finite-temperature-framework
             when: any SEET or fully self-consistent SEET calculation
           - publication: seet-gw-2017
             role: specialized-method
             when: GW is the weak-coupling method
+          - publication: seet-gf2-molecular-2015
+            role: specialized-method
+            when: GF2 is the weak-coupling method for a molecule
+          - publication: seet-gf2-periodic-2019
+            role: specialized-method
+            when: GF2 is the weak-coupling method for a periodic system
+          - publication: edlib-2018
+            role: impurity-solver
+            when: the green-seet-solvers EDLib executable solves the impurity problem
           - publication: green-weakcoupling-1.0-2027
             role: green-implementation
             when: GREEN supplies the weak-coupling or embedding workflow
         rationale: >-
-          The code exposes SEET and FSC_SEET with GF2 or GW weak solvers. The
-          website cites the general finite-temperature framework and a SEET+GW
-          application, but no explicit SEET+GF2 mapping.
+          Lan et al. describe molecular SEET with GF2, and Rusakov et al.
+          describe fully self-consistent periodic SEET with GF2. The proposed
+          citation follows the weak method and impurity solver used for either
+          SEET or FSC_SEET. green-seet-solvers links its ED executable to EDLib.
         questions:
-          - Which publication should be required for SEET+GF2?
-          - Does the exact-diagonalization impurity solver have its own required citation?
-          - Should FSC_SEET carry a distinct citation from inner-loop SEET?
+          - Do the SEET maintainers approve these route-specific citations for both loop settings?
 
       diis:
         status: resolved
@@ -232,10 +257,14 @@ components:
           - publication: nevanlinna-2021
             role: original-method
             when: scalar Nevanlinna continuation is used
-        rationale: The installation and theory pages identify this method in green-ac.
+        rationale: >-
+          The green-ac README documents Nevanlinna continuation. Cite the method
+          and record the green-ac release or commit used for reproducibility.
         questions:
-          - Is there a separate GREEN green-ac implementation paper or software citation?
+          - Can the maintainers identify a separate green-ac publication or software DOI?
 
+  green-mbtools:
+    methods:
       caratheodory:
         status: resolved
         proposed:
@@ -243,19 +272,19 @@ components:
             role: original-method
             when: matrix-valued Caratheodory continuation is used
         rationale: >-
-          Caratheodory is user-accessible in green-ac, but is not a recommended
-          continuation route. Its method paper remains required when it is used.
+          green-mbtools builds and calls the Caratheodory extension. Cite the
+          method when using that extension.
         questions: []
 
       maximum-entropy:
         status: resolved
         proposed:
-          - publication: maxent-green-implementation-2017
+          - publication: maxent-implementation-2017
             role: implementation
             when: MaxEnt is used for a diagonal Green's function or density of states
         rationale: >-
-          MaxEnt is a supported GREEN capability only for diagonal Green's
-          functions and densities of states.
+          The green-mbtools wrapper calls the external CQMP/Maxent executable
+          for diagonal Green's functions and densities of states.
         questions: []
 
   minipole:

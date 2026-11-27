@@ -4,7 +4,7 @@
 
 Policy status: **draft**.
 
-Software citations do not replace citations for scientific methods used in a calculation. Method mappings remain review-required until collaborators approve them.
+Software citations do not replace citations for scientific methods used in a calculation. Method mappings remain review-required until collaborators approve them. The 2025 implementation paper is optional when documenting work done with a pre-1.0 release.
 
 ## GREEN/WeakCoupling (`green-mbpt`)
 
@@ -15,9 +15,6 @@ Software citations do not replace citations for scientific methods used in a cal
 ### Historical and optional
 
 - Sergei Iskakov, Chia-Nan Yeh, Pavel Pokhilko, Yang Yu, Lei Zhang, Gaurav Harsha, Vibin Abraham, Ming Wen, Munkhorgil Wang, Jacob Adamski, Tianran Chen, Emanuel Gull, Dominika Zgid. “Green/WeakCoupling: Implementation of fully self-consistent finite-temperature many-body perturbation theory for molecules and solids.” *Computer Physics Communications* 306 (2025), 109380. https://doi.org/10.1016/j.cpc.2024.109380
-
-### Versions
-
 
 ### Scientific methods
 
