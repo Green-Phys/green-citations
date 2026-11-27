@@ -4,7 +4,7 @@
   "additionalProperties": false,
   "required": ["schema-version", "policy-status", "policy-note", "components"],
   "properties": {
-    "schema-version": {"const": 1},
+    "schema-version": {"enum": [1, 2]},
     "policy-status": {"enum": ["draft", "approved"]},
     "policy-note": {"type": "string", "minLength": 1},
     "components": {
@@ -13,12 +13,15 @@
       "additionalProperties": {"$ref": "#/$defs/component"}
     }
   },
+  "if": {"properties": {"schema-version": {"const": 2}}},
+  "then": {"properties": {"components": {"additionalProperties": {"required": ["historical"]}}}},
+  "else": {"properties": {"components": {"additionalProperties": {"properties": {"historical": false}}}}},
   "$defs": {
     "keys": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
     "component": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "implementation", "historical", "versions", "methods", "method-mapping-status"],
+      "required": ["name", "implementation", "versions", "methods", "method-mapping-status"],
       "properties": {
         "name": {"type": "string", "minLength": 1},
         "implementation": {"$ref": "#/$defs/keys"},
